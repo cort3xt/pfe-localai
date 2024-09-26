@@ -178,17 +178,17 @@ ifeq ($(findstring tts,$(GO_TAGS)),tts)
 	OPTIONAL_GRPC+=backend-assets/grpc/piper
 endif
 
-ALL_GRPC_BACKENDS=backend-assets/grpc/huggingface
-ALL_GRPC_BACKENDS+=backend-assets/grpc/bert-embeddings
-ALL_GRPC_BACKENDS+=backend-assets/grpc/llama-cpp-avx
+# ALL_GRPC_BACKENDS=backend-assets/grpc/huggingface
+# ALL_GRPC_BACKENDS+=backend-assets/grpc/bert-embeddings
+# ALL_GRPC_BACKENDS+=backend-assets/grpc/llama-cpp-avx
 ALL_GRPC_BACKENDS+=backend-assets/grpc/llama-cpp-avx2
-ALL_GRPC_BACKENDS+=backend-assets/grpc/llama-cpp-fallback
-ALL_GRPC_BACKENDS+=backend-assets/grpc/llama-ggml
-ALL_GRPC_BACKENDS+=backend-assets/grpc/llama-cpp-grpc
-ALL_GRPC_BACKENDS+=backend-assets/util/llama-cpp-rpc-server
-ALL_GRPC_BACKENDS+=backend-assets/grpc/rwkv
-ALL_GRPC_BACKENDS+=backend-assets/grpc/whisper
-ALL_GRPC_BACKENDS+=backend-assets/grpc/local-store
+# ALL_GRPC_BACKENDS+=backend-assets/grpc/llama-cpp-fallback
+# ALL_GRPC_BACKENDS+=backend-assets/grpc/llama-ggml
+# ALL_GRPC_BACKENDS+=backend-assets/grpc/llama-cpp-grpc
+# ALL_GRPC_BACKENDS+=backend-assets/util/llama-cpp-rpc-server
+# ALL_GRPC_BACKENDS+=backend-assets/grpc/rwkv
+# ALL_GRPC_BACKENDS+=backend-assets/grpc/whisper
+# ALL_GRPC_BACKENDS+=backend-assets/grpc/local-store
 ALL_GRPC_BACKENDS+=$(OPTIONAL_GRPC)
 # Use filter-out to remove the specified backends
 ALL_GRPC_BACKENDS := $(filter-out $(SKIP_GRPC_BACKEND),$(ALL_GRPC_BACKENDS))
@@ -374,6 +374,9 @@ endif
 
 build-minimal:
 	BUILD_GRPC_FOR_BACKEND_LLAMA=true GRPC_BACKENDS="backend-assets/grpc/llama-cpp-avx2" GO_TAGS=p2p $(MAKE) build
+
+build-pfe:
+	BUILD_GRPC_FOR_BACKEND_LLAMA=true GRPC_BACKENDS="backend-assets/grpc/llama-cpp-avx2" $(MAKE) build
 
 build-api:
 	BUILD_GRPC_FOR_BACKEND_LLAMA=true BUILD_API_ONLY=true GO_TAGS=p2p $(MAKE) build

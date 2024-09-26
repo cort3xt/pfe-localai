@@ -1,0 +1,46 @@
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",  // Adjust storage based on your disk size
+      "enabled": true,
+      "policy": [
+        {"keepDuration": "168h", "filters": ["unused"]}, // Clear unused images after a week
+        {"keepStorage": "10GB"}  // Keep at least 10GB of images for faster rebuilds
+      ]
+    }
+  },
+  "experimental": false,
+  "features": {
+    "buildkit": true
+  },
+  "dns": ["8.8.8.8", "8.8.4.4"],  // Set DNS servers to speed up network calls
+  "max-concurrent-downloads": 10,  // Increase number of simultaneous downloads
+  "max-concurrent-uploads": 5,  // Increase number of simultaneous uploads
+  "default-ulimits": {  // Increase system resource limits to handle more containers/processes
+    "nofile": {
+      "Name": "nofile",
+      "Hard": 1024,
+      "Soft": 1024
+    },
+    "nproc": {
+      "Name": "nproc",
+      "Hard": 1024,
+      "Soft": 1024
+    }
+  },
+  "log-driver": "json-file",  // Configure logging for better performance
+  "log-opts": {
+    "max-size": "10m",  // Limit log size to avoid disk space issues
+    "max-file": "3"
+  },
+  "metrics-addr" : "0.0.0.0:9323",  // Enable Prometheus metrics for monitoring
+  "mtu": 1500,  // Configure maximum transmission unit size for network performance
+  "storage-driver": "overlay2",  // Use overlay2 for better storage performance
+  "debug": false,  // Turn off debug mode to improve performance
+  "data-root": "C:\\ProgramData\\Docker",  // Customize data storage location if needed
+  "bip": "192.168.1.5/24",  // Set custom bridge IP to avoid conflicts in your network
+  "insecure-registries": [  // Define any private registries for faster access
+    "myprivateregistry.com"
+  ],
+  "live-restore": true  // Keep containers running while Docker Engine is restarted
+}

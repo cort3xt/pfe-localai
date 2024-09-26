@@ -1,0 +1,1089 @@
+pfe-localai
+├── .devcontainer
+│   ├── customization
+│   │   └── README.md
+│   ├── devcontainer.json
+│   ├── docker-compose-devcontainer.yml
+│   ├── grafana
+│   │   └── datasource.yml
+│   └── prometheus
+│       └── prometheus.yml
+├── .devcontainer-scripts
+│   ├── postcreate.sh
+│   ├── poststart.sh
+│   └── utils.sh
+├── .dockerignore
+├── .editorconfig
+├── .env
+├── .gitattributes
+├── .github
+│   ├── bump_deps.sh
+│   ├── bump_docs.sh
+│   ├── checksum_checker.sh
+│   ├── check_and_update.py
+│   ├── ci
+│   │   └── modelslist.go
+│   ├── dependabot.yml
+│   ├── FUNDING.yml
+│   ├── ISSUE_TEMPLATE
+│   │   ├── bug_report.md
+│   │   ├── config.yml
+│   │   └── feature_request.md
+│   ├── labeler.yml
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── release.yml
+│   ├── stale.yml
+│   └── workflows
+│       ├── bump_deps.yaml
+│       ├── bump_docs.yaml
+│       ├── checksum_checker.yaml
+│       ├── dependabot_auto.yml
+│       ├── deploy-explorer.yaml
+│       ├── disabled
+│       │   ├── comment-pr.yaml
+│       │   └── test-gpu.yml
+│       ├── generate_grpc_cache.yaml
+│       ├── generate_intel_image.yaml
+│       ├── image-pr.yml
+│       ├── image.yml
+│       ├── image_build.yml
+│       ├── labeler.yml
+│       ├── localaibot_automerge.yml
+│       ├── notify-models.yaml
+│       ├── notify-releases.yaml
+│       ├── prlint.yaml
+│       ├── release.yaml
+│       ├── secscan.yaml
+│       ├── test-extra.yml
+│       ├── test.yml
+│       ├── update_swagger.yaml
+│       └── yaml-check.yml
+├── .gitignore
+├── .gitmodules
+├── .vscode
+│   ├── extensions.json
+│   └── launch.json
+├── .yamllint
+├── aio
+│   ├── cpu
+│   │   ├── embeddings.yaml
+│   │   ├── image-gen.yaml
+│   │   ├── README.md
+│   │   ├── rerank.yaml
+│   │   ├── speech-to-text.yaml
+│   │   ├── text-to-speech.yaml
+│   │   ├── text-to-text.yaml
+│   │   └── vision.yaml
+│   ├── entrypoint.sh
+│   ├── gpu-8g
+│   │   ├── embeddings.yaml
+│   │   ├── image-gen.yaml
+│   │   ├── rerank.yaml
+│   │   ├── speech-to-text.yaml
+│   │   ├── text-to-speech.yaml
+│   │   ├── text-to-text.yaml
+│   │   └── vision.yaml
+│   └── intel
+│       ├── embeddings.yaml
+│       ├── image-gen.yaml
+│       ├── rerank.yaml
+│       ├── speech-to-text.yaml
+│       ├── text-to-speech.yaml
+│       ├── text-to-text.yaml
+│       └── vision.yaml
+├── assets.go
+├── backend
+│   ├── backend.proto
+│   ├── cpp
+│   │   ├── grpc
+│   │   │   ├── .gitignore
+│   │   │   └── Makefile
+│   │   └── llama
+│   │       ├── CMakeLists.txt
+│   │       ├── grpc-server.cpp
+│   │       ├── json.hpp
+│   │       ├── Makefile
+│   │       ├── patches
+│   │       │   └── 01-llava.patch
+│   │       ├── prepare.sh
+│   │       └── utils.hpp
+│   ├── go
+│   │   ├── image
+│   │   │   ├── stablediffusion
+│   │   │   │   ├── main.go
+│   │   │   │   └── stablediffusion.go
+│   │   │   └── tinydream
+│   │   │       ├── main.go
+│   │   │       └── tinydream.go
+│   │   ├── llm
+│   │   │   ├── bert
+│   │   │   │   ├── bert.go
+│   │   │   │   └── main.go
+│   │   │   ├── langchain
+│   │   │   │   ├── langchain.go
+│   │   │   │   └── main.go
+│   │   │   ├── llama
+│   │   │   │   ├── llama.go
+│   │   │   │   └── main.go
+│   │   │   ├── llama-ggml
+│   │   │   │   ├── llama.go
+│   │   │   │   └── main.go
+│   │   │   └── rwkv
+│   │   │       ├── main.go
+│   │   │       └── rwkv.go
+│   │   ├── stores
+│   │   │   ├── debug.go
+│   │   │   ├── main.go
+│   │   │   ├── production.go
+│   │   │   └── store.go
+│   │   ├── transcribe
+│   │   │   └── whisper
+│   │   │       ├── main.go
+│   │   │       └── whisper.go
+│   │   └── tts
+│   │       ├── main.go
+│   │       └── piper.go
+│   └── python
+│       ├── autogptq
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   └── test.sh
+│       ├── bark
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── common
+│       │   ├── libbackend.sh
+│       │   └── template
+│       │       ├── backend.py
+│       │       ├── install.sh
+│       │       ├── Makefile
+│       │       ├── requirements-hipblas.txt
+│       │       ├── requirements-intel.txt
+│       │       ├── requirements.txt
+│       │       ├── run.sh
+│       │       └── test.sh
+│       ├── coqui
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── diffusers
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── exllama2
+│       │   ├── .gitignore
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-install.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   └── test.sh
+│       ├── mamba
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-after.txt
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-install.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── openvoice
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── parler-tts
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── requirements-after.txt
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── README.md
+│       ├── rerankers
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── sentencetransformers
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── transformers
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── transformers-musicgen
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       ├── vall-e-x
+│       │   ├── .gitignore
+│       │   ├── backend.py
+│       │   ├── install.sh
+│       │   ├── Makefile
+│       │   ├── README.md
+│       │   ├── requirements-cpu.txt
+│       │   ├── requirements-cublas11.txt
+│       │   ├── requirements-cublas12.txt
+│       │   ├── requirements-hipblas.txt
+│       │   ├── requirements-intel.txt
+│       │   ├── requirements.txt
+│       │   ├── run.sh
+│       │   ├── test.py
+│       │   └── test.sh
+│       └── vllm
+│           ├── backend.py
+│           ├── install.sh
+│           ├── Makefile
+│           ├── README.md
+│           ├── requirements-after.txt
+│           ├── requirements-cpu.txt
+│           ├── requirements-cublas11-after.txt
+│           ├── requirements-cublas11.txt
+│           ├── requirements-cublas12-after.txt
+│           ├── requirements-cublas12.txt
+│           ├── requirements-hipblas.txt
+│           ├── requirements-install.txt
+│           ├── requirements-intel.txt
+│           ├── requirements.txt
+│           ├── run.sh
+│           ├── test.py
+│           └── test.sh
+├── configuration
+│   └── .keep
+├── CONTRIBUTING.md
+├── core
+│   ├── application.go
+│   ├── backend
+│   │   ├── backend_suite_test.go
+│   │   ├── embeddings.go
+│   │   ├── image.go
+│   │   ├── llm.go
+│   │   ├── llm_test.go
+│   │   ├── options.go
+│   │   ├── rerank.go
+│   │   ├── soundgeneration.go
+│   │   ├── stores.go
+│   │   ├── transcript.go
+│   │   └── tts.go
+│   ├── cli
+│   │   ├── api
+│   │   │   └── p2p.go
+│   │   ├── cli.go
+│   │   ├── context
+│   │   │   └── context.go
+│   │   ├── explorer.go
+│   │   ├── federated.go
+│   │   ├── models.go
+│   │   ├── run.go
+│   │   ├── soundgeneration.go
+│   │   ├── transcript.go
+│   │   ├── tts.go
+│   │   ├── util.go
+│   │   └── worker
+│   │       ├── worker.go
+│   │       ├── worker_llamacpp.go
+│   │       ├── worker_nop2p.go
+│   │       └── worker_p2p.go
+│   ├── clients
+│   │   └── store.go
+│   ├── config
+│   │   ├── application_config.go
+│   │   ├── backend_config.go
+│   │   ├── backend_config_loader.go
+│   │   ├── backend_config_test.go
+│   │   ├── config_suite_test.go
+│   │   ├── config_test.go
+│   │   ├── gallery.go
+│   │   └── guesser.go
+│   ├── dependencies_manager
+│   │   └── manager.go
+│   ├── explorer
+│   │   ├── database.go
+│   │   ├── database_test.go
+│   │   ├── discovery.go
+│   │   └── explorer_suite_test.go
+│   ├── gallery
+│   │   ├── gallery.go
+│   │   ├── gallery_suite_test.go
+│   │   ├── models.go
+│   │   ├── models_test.go
+│   │   ├── op.go
+│   │   ├── request.go
+│   │   └── request_test.go
+│   ├── http
+│   │   ├── app.go
+│   │   ├── app_test.go
+│   │   ├── ctx
+│   │   │   └── fiber.go
+│   │   ├── elements
+│   │   │   └── gallery.go
+│   │   ├── endpoints
+│   │   │   ├── elevenlabs
+│   │   │   │   ├── soundgeneration.go
+│   │   │   │   └── tts.go
+│   │   │   ├── explorer
+│   │   │   │   └── dashboard.go
+│   │   │   ├── jina
+│   │   │   │   └── rerank.go
+│   │   │   ├── localai
+│   │   │   │   ├── backend_monitor.go
+│   │   │   │   ├── gallery.go
+│   │   │   │   ├── metrics.go
+│   │   │   │   ├── p2p.go
+│   │   │   │   ├── stores.go
+│   │   │   │   ├── system.go
+│   │   │   │   ├── tts.go
+│   │   │   │   └── welcome.go
+│   │   │   └── openai
+│   │   │       ├── assistant.go
+│   │   │       ├── assistant_test.go
+│   │   │       ├── chat.go
+│   │   │       ├── completion.go
+│   │   │       ├── edit.go
+│   │   │       ├── embeddings.go
+│   │   │       ├── files.go
+│   │   │       ├── files_test.go
+│   │   │       ├── image.go
+│   │   │       ├── inference.go
+│   │   │       ├── list.go
+│   │   │       ├── request.go
+│   │   │       └── transcription.go
+│   │   ├── explorer.go
+│   │   ├── http_suite_test.go
+│   │   ├── middleware
+│   │   │   └── auth.go
+│   │   ├── render.go
+│   │   ├── routes
+│   │   │   ├── elevenlabs.go
+│   │   │   ├── explorer.go
+│   │   │   ├── jina.go
+│   │   │   ├── localai.go
+│   │   │   ├── openai.go
+│   │   │   └── ui.go
+│   │   ├── static
+│   │   │   ├── assets
+│   │   │   │   ├── alpine.js
+│   │   │   │   ├── font1.css
+│   │   │   │   ├── font2.css
+│   │   │   │   ├── fontawesome
+│   │   │   │   │   ├── css
+│   │   │   │   │   │   ├── all.css
+│   │   │   │   │   │   ├── all.min.css
+│   │   │   │   │   │   ├── brands.css
+│   │   │   │   │   │   ├── brands.min.css
+│   │   │   │   │   │   ├── fontawesome.css
+│   │   │   │   │   │   ├── fontawesome.min.css
+│   │   │   │   │   │   ├── regular.css
+│   │   │   │   │   │   ├── regular.min.css
+│   │   │   │   │   │   ├── solid.css
+│   │   │   │   │   │   ├── solid.min.css
+│   │   │   │   │   │   ├── svg-with-js.css
+│   │   │   │   │   │   ├── svg-with-js.min.css
+│   │   │   │   │   │   ├── v4-font-face.css
+│   │   │   │   │   │   ├── v4-font-face.min.css
+│   │   │   │   │   │   ├── v4-shims.css
+│   │   │   │   │   │   ├── v4-shims.min.css
+│   │   │   │   │   │   ├── v5-font-face.css
+│   │   │   │   │   │   └── v5-font-face.min.css
+│   │   │   │   │   └── webfonts
+│   │   │   │   │       ├── fa-brands-400.ttf
+│   │   │   │   │       ├── fa-brands-400.woff2
+│   │   │   │   │       ├── fa-regular-400.ttf
+│   │   │   │   │       ├── fa-regular-400.woff2
+│   │   │   │   │       ├── fa-solid-900.ttf
+│   │   │   │   │       ├── fa-solid-900.woff2
+│   │   │   │   │       ├── fa-v4compatibility.ttf
+│   │   │   │   │       └── fa-v4compatibility.woff2
+│   │   │   │   ├── fontawesome.css
+│   │   │   │   ├── highlightjs.css
+│   │   │   │   ├── highlightjs.js
+│   │   │   │   ├── htmx.js
+│   │   │   │   ├── KFOlCnqEu92Fr1MmEU9fBBc9.ttf
+│   │   │   │   ├── KFOlCnqEu92Fr1MmEU9vAw.ttf
+│   │   │   │   ├── KFOlCnqEu92Fr1MmSU5fBBc9.ttf
+│   │   │   │   ├── KFOlCnqEu92Fr1MmWUlfBBc9.ttf
+│   │   │   │   ├── KFOlCnqEu92Fr1MmYUtfBBc9.ttf
+│   │   │   │   ├── KFOmCnqEu92Fr1Me5Q.ttf
+│   │   │   │   ├── KFOmCnqEu92Fr1Mu4mxP.ttf
+│   │   │   │   ├── marked.js
+│   │   │   │   ├── purify.js
+│   │   │   │   ├── tailwindcss.js
+│   │   │   │   ├── tw-elements.css
+│   │   │   │   ├── tw-elements.js
+│   │   │   │   ├── UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYMZg.ttf
+│   │   │   │   ├── UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZg.ttf
+│   │   │   │   └── UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZg.ttf
+│   │   │   ├── chat.js
+│   │   │   ├── favicon.ico
+│   │   │   ├── general.css
+│   │   │   ├── image.js
+│   │   │   ├── p2panimation.js
+│   │   │   ├── talk.js
+│   │   │   └── tts.js
+│   │   └── views
+│   │       ├── 404.html
+│   │       ├── chat.html
+│   │       ├── explorer.html
+│   │       ├── index.html
+│   │       ├── models.html
+│   │       ├── p2p.html
+│   │       ├── partials
+│   │       │   ├── footer.html
+│   │       │   ├── head.html
+│   │       │   ├── inprogress.html
+│   │       │   ├── navbar.html
+│   │       │   └── navbar_explorer.html
+│   │       ├── talk.html
+│   │       ├── text2image.html
+│   │       └── tts.html
+│   ├── p2p
+│   │   ├── federated.go
+│   │   ├── federated_server.go
+│   │   ├── node.go
+│   │   ├── p2p.go
+│   │   └── p2p_disabled.go
+│   ├── schema
+│   │   ├── elevenlabs.go
+│   │   ├── jina.go
+│   │   ├── localai.go
+│   │   ├── openai.go
+│   │   ├── prediction.go
+│   │   └── transcription.go
+│   ├── services
+│   │   ├── backend_monitor.go
+│   │   ├── gallery.go
+│   │   ├── list_models.go
+│   │   └── metrics.go
+│   └── startup
+│       ├── config_file_watcher.go
+│       └── startup.go
+├── custom-ca-certs
+│   └── .keep
+├── docker-compose.yaml
+├── Dockerfile
+├── Dockerfile.aio
+├── docs
+│   ├── assets
+│   │   └── jsconfig.json
+│   ├── config.toml
+│   ├── content
+│   │   └── docs
+│   │       ├── advanced
+│   │       │   ├── advanced-usage.md
+│   │       │   ├── fine-tuning.md
+│   │       │   ├── installer.md
+│   │       │   ├── run-other-models.md
+│   │       │   └── _index.en.md
+│   │       ├── faq.md
+│   │       ├── features
+│   │       │   ├── audio-to-text.md
+│   │       │   ├── constrained_grammars.md
+│   │       │   ├── distributed_inferencing.md
+│   │       │   ├── embeddings.md
+│   │       │   ├── gpt-vision.md
+│   │       │   ├── GPU-acceleration.md
+│   │       │   ├── image-generation.md
+│   │       │   ├── model-gallery.md
+│   │       │   ├── openai-functions.md
+│   │       │   ├── reranker.md
+│   │       │   ├── stores.md
+│   │       │   ├── text-generation.md
+│   │       │   ├── text-to-audio.md
+│   │       │   └── _index.en.md
+│   │       ├── getting-started
+│   │       │   ├── build.md
+│   │       │   ├── container-images.md
+│   │       │   ├── customize-model.md
+│   │       │   ├── kubernetes.md
+│   │       │   ├── models.md
+│   │       │   ├── quickstart.md
+│   │       │   ├── try-it-out.md
+│   │       │   └── _index.en.md
+│   │       ├── integrations.md
+│   │       ├── overview.md
+│   │       ├── reference
+│   │       │   ├── architecture.md
+│   │       │   ├── binaries.md
+│   │       │   ├── compatibility-table.md
+│   │       │   └── _index.en.md
+│   │       └── whats-new.md
+│   ├── data
+│   │   ├── landing.yaml
+│   │   └── version.json
+│   ├── docker-compose.yaml
+│   ├── Dockerfile
+│   ├── go.mod
+│   ├── go.sum
+│   ├── layouts
+│   │   ├── 404.html
+│   │   ├── index.html
+│   │   ├── partials
+│   │   │   ├── docs
+│   │   │   │   ├── gitinfo.html
+│   │   │   │   └── sidebar.html
+│   │   │   ├── head.html
+│   │   │   └── logo.html
+│   │   └── shortcodes
+│   │       ├── github.html
+│   │       ├── pr.html
+│   │       └── version.html
+│   ├── netlify.toml
+│   ├── package.json
+│   ├── README.md
+│   ├── static
+│   │   ├── android-chrome-192x192.png
+│   │   ├── android-chrome-512x512.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon-16x16.png
+│   │   ├── favicon-32x32.png
+│   │   ├── favicon.ico
+│   │   └── install.sh
+│   └── themes
+│       ├── hugo-theme-relearn
+│       └── lotusdocs
+├── Earthfile
+├── embedded
+│   ├── embedded.go
+│   ├── models
+│   │   ├── all-minilm-l6-v2.yaml
+│   │   ├── animagine-xl.yaml
+│   │   ├── bakllava.yaml
+│   │   ├── bark.yaml
+│   │   ├── bert-cpp.yaml
+│   │   ├── cerbero.yaml
+│   │   ├── codellama-7b-gguf.yaml
+│   │   ├── codellama-7b.yaml
+│   │   ├── coqui.yaml
+│   │   ├── dolphin-2.5-mixtral-8x7b.yaml
+│   │   ├── hermes-2-pro-mistral.yaml
+│   │   ├── llama3-instruct.yaml
+│   │   ├── llava-1.5.yaml
+│   │   ├── llava-1.6-mistral.yaml
+│   │   ├── llava-1.6-vicuna.yaml
+│   │   ├── llava.yaml
+│   │   ├── mamba-bagel.yaml
+│   │   ├── mamba-chat.yaml
+│   │   ├── mistral-openorca.yaml
+│   │   ├── mixtral-instruct.yaml
+│   │   ├── phi-2-chat.yaml
+│   │   ├── phi-2-orange.yaml
+│   │   ├── rhasspy-voice-en-us-amy.yaml
+│   │   ├── tinyllama-chat.yaml
+│   │   ├── transformers-tinyllama.yaml
+│   │   ├── vall-e-x.yaml
+│   │   └── whisper-base.yaml
+│   ├── model_library.yaml
+│   └── webui_static.yaml
+├── Entitlements.plist
+├── entrypoint.sh
+├── examples
+│   ├── autoGPT
+│   │   ├── .env.example
+│   │   ├── docker-compose.yaml
+│   │   └── README.md
+│   ├── bruno
+│   │   └── LocalAI Test Requests
+│   │       ├── backend monitor
+│   │       │   ├── backend monitor.bru
+│   │       │   └── backend-shutdown.bru
+│   │       ├── bruno.json
+│   │       ├── environments
+│   │       │   └── localhost.bru
+│   │       ├── get models list.bru
+│   │       ├── image generation
+│   │       │   └── Generate image.bru
+│   │       ├── llm text
+│   │       │   ├── -completions.bru
+│   │       │   ├── -edits.bru
+│   │       │   ├── -embeddings.bru
+│   │       │   └── chat
+│   │       │       ├── chat completion -simple- 1 message-.bru
+│   │       │       ├── chat-completions -long-.bru
+│   │       │       └── chat-completions -stream-.bru
+│   │       ├── model gallery
+│   │       │   ├── add model gallery.bru
+│   │       │   ├── delete model gallery.bru
+│   │       │   ├── list model GALLERIES.bru
+│   │       │   ├── list MODELS in galleries.bru
+│   │       │   ├── model gallery apply -gist-.bru
+│   │       │   └── model gallery apply.bru
+│   │       ├── Sound Generation
+│   │       │   └── musicgen.bru
+│   │       └── tts
+│   │           ├── -tts.bru
+│   │           └── musicgen.bru
+│   ├── chainlit
+│   │   ├── config.yaml
+│   │   ├── Dockerfile
+│   │   ├── main.py
+│   │   ├── README.md
+│   │   └── requirements.txt
+│   ├── chatbot-ui
+│   │   ├── docker-compose.yaml
+│   │   └── README.md
+│   ├── chatbot-ui-manual
+│   │   ├── docker-compose.yaml
+│   │   ├── models
+│   │   └── README.md
+│   ├── configurations
+│   │   ├── llava
+│   │   │   ├── chat-simple.tmpl
+│   │   │   └── llava.yaml
+│   │   ├── mistral
+│   │   │   ├── chatml-block.tmpl
+│   │   │   ├── chatml.tmpl
+│   │   │   ├── completion.tmpl
+│   │   │   └── mistral.yaml
+│   │   ├── mixtral
+│   │   │   ├── mixtral
+│   │   │   ├── mixtral-chat
+│   │   │   └── mixtral.yaml
+│   │   ├── phi-2.yaml
+│   │   └── README.md
+│   ├── continue
+│   │   ├── config.py
+│   │   ├── docker-compose.yml
+│   │   ├── img
+│   │   │   └── screen.png
+│   │   └── README.md
+│   ├── discord-bot
+│   │   ├── .env.example
+│   │   ├── docker-compose.yaml
+│   │   ├── models
+│   │   └── README.md
+│   ├── e2e-fine-tuning
+│   │   ├── axolotl.yaml
+│   │   ├── notebook.ipynb
+│   │   └── README.md
+│   ├── flowise
+│   │   ├── docker-compose.yaml
+│   │   └── README.md
+│   ├── functions
+│   │   ├── .env.example
+│   │   ├── docker-compose.yaml
+│   │   ├── Dockerfile
+│   │   ├── functions-openai.py
+│   │   ├── README.md
+│   │   └── requirements.txt
+│   ├── github-actions
+│   │   └── workflow.yml
+│   ├── insomnia
+│   │   ├── Insomnia_LocalAI.json
+│   │   └── README.md
+│   ├── k8sgpt
+│   │   ├── broken-pod.yaml
+│   │   ├── README.md
+│   │   └── values.yaml
+│   ├── kubernetes
+│   │   ├── deployment-intel-arc.yaml
+│   │   ├── deployment-nvidia.yaml
+│   │   └── deployment.yaml
+│   ├── langchain
+│   │   ├── .gitignore
+│   │   ├── docker-compose.yaml
+│   │   ├── JS.Dockerfile
+│   │   ├── langchainjs-localai-example
+│   │   │   ├── .gitignore
+│   │   │   ├── .vscode
+│   │   │   │   └── launch.json
+│   │   │   ├── package-lock.json
+│   │   │   ├── package.json
+│   │   │   ├── src
+│   │   │   │   └── index.mts
+│   │   │   └── tsconfig.json
+│   │   ├── langchainpy-localai-example
+│   │   │   ├── .vscode
+│   │   │   │   ├── launch.json
+│   │   │   │   └── settings.json
+│   │   │   ├── full_demo.py
+│   │   │   ├── requirements.txt
+│   │   │   └── simple_demo.py
+│   │   ├── models
+│   │   ├── PY.Dockerfile
+│   │   └── README.md
+│   ├── langchain-chroma
+│   │   ├── .env.example
+│   │   ├── .gitignore
+│   │   ├── docker-compose.yml
+│   │   ├── models
+│   │   ├── query.py
+│   │   ├── README.md
+│   │   ├── requirements.txt
+│   │   └── store.py
+│   ├── langchain-huggingface
+│   │   ├── docker-compose.yml
+│   │   ├── models
+│   │   └── README.md
+│   ├── langchain-python
+│   │   ├── agent.py
+│   │   ├── docker-compose.yaml
+│   │   ├── README.md
+│   │   └── test.py
+│   ├── llamaindex
+│   │   ├── main.py
+│   │   └── README.md
+│   ├── localai-webui
+│   │   ├── docker-compose.yml
+│   │   └── README.md
+│   ├── models
+│   │   ├── .gitignore
+│   │   ├── completion.tmpl
+│   │   ├── embeddings.yaml
+│   │   ├── gpt-3.5-turbo.yaml
+│   │   └── gpt4all.tmpl
+│   ├── privateGPT
+│   │   └── README.md
+│   ├── query_data
+│   │   ├── .gitignore
+│   │   ├── data
+│   │   │   └── .keep
+│   │   ├── docker-compose.yml
+│   │   ├── models
+│   │   ├── query.py
+│   │   ├── README.md
+│   │   ├── store.py
+│   │   └── update.py
+│   ├── README.md
+│   ├── rwkv
+│   │   ├── .gitignore
+│   │   ├── docker-compose.yaml
+│   │   ├── Dockerfile.build
+│   │   ├── models
+│   │   │   ├── gpt-3.5-turbo.yaml
+│   │   │   ├── rwkv_chat.tmpl
+│   │   │   └── rwkv_completion.tmpl
+│   │   ├── README.md
+│   │   └── scripts
+│   │       └── build.sh
+│   ├── semantic-todo
+│   │   ├── go.mod
+│   │   ├── go.sum
+│   │   ├── main.go
+│   │   └── README.md
+│   ├── slack-bot
+│   │   ├── .env.example
+│   │   ├── docker-compose.yaml
+│   │   ├── models
+│   │   └── README.md
+│   ├── slack-qa-bot
+│   │   ├── .env.example
+│   │   ├── deployment.yaml
+│   │   ├── docker-compose.yml
+│   │   └── README.md
+│   ├── streamlit-bot
+│   │   ├── .gitignore
+│   │   ├── cmd_windows.bat
+│   │   ├── install_requirements.bat
+│   │   ├── LICENSE
+│   │   ├── Main.py
+│   │   ├── README.md
+│   │   ├── requirements.txt
+│   │   ├── start_windows.bat
+│   │   └── streamlit-bot.png
+│   └── telegram-bot
+│       ├── docker-compose.yml
+│       └── README.md
+├── gallery
+│   ├── alpaca.yaml
+│   ├── bert-embeddings.yaml
+│   ├── cerbero.yaml
+│   ├── chatml-hercules.yaml
+│   ├── chatml.yaml
+│   ├── codellama.yaml
+│   ├── command-r.yaml
+│   ├── deepseek.yaml
+│   ├── dreamshaper.yaml
+│   ├── flux.yaml
+│   ├── gemma.yaml
+│   ├── hermes-2-pro-mistral.yaml
+│   ├── hermes-vllm.yaml
+│   ├── index.yaml
+│   ├── llama3-instruct.yaml
+│   ├── llama3.1-instruct-grammar.yaml
+│   ├── llama3.1-instruct.yaml
+│   ├── llama3.1-reflective.yaml
+│   ├── llava.yaml
+│   ├── mathstral.yaml
+│   ├── mistral-0.3.yaml
+│   ├── moondream.yaml
+│   ├── mudler.yaml
+│   ├── noromaid.yaml
+│   ├── openvino.yaml
+│   ├── parler-tts.yaml
+│   ├── phi-2-chat.yaml
+│   ├── phi-2-orange.yaml
+│   ├── phi-3-chat.yaml
+│   ├── piper.yaml
+│   ├── rerankers.yaml
+│   ├── sentencetransformers.yaml
+│   ├── stablediffusion.yaml
+│   ├── stablediffusion3.yaml
+│   ├── tinydream.yaml
+│   ├── tuluv2.yaml
+│   ├── vicuna-chat.yaml
+│   ├── virtual.yaml
+│   ├── vllm.yaml
+│   ├── whisper-base.yaml
+│   └── wizardlm2.yaml
+├── go.mod
+├── go.sum
+├── internal
+│   └── version.go
+├── LICENSE
+├── main.go
+├── Makefile
+├── models
+│   └── .keep
+├── pkg
+│   ├── assets
+│   │   ├── extract.go
+│   │   └── list.go
+│   ├── concurrency
+│   │   ├── concurrency_suite_test.go
+│   │   ├── jobresult.go
+│   │   └── jobresult_test.go
+│   ├── downloader
+│   │   ├── downloader_suite_test.go
+│   │   ├── huggingface.go
+│   │   ├── progress.go
+│   │   ├── uri.go
+│   │   └── uri_test.go
+│   ├── functions
+│   │   ├── functions.go
+│   │   ├── functions_suite_test.go
+│   │   ├── functions_test.go
+│   │   ├── function_structure.go
+│   │   ├── grammars
+│   │   │   ├── bnf_rules.go
+│   │   │   ├── grammars_suite_test.go
+│   │   │   ├── json_schema.go
+│   │   │   ├── json_schema_test.go
+│   │   │   ├── llama31_schema.go
+│   │   │   ├── llama31_schema_test.go
+│   │   │   ├── options.go
+│   │   │   ├── rules.go
+│   │   │   └── types.go
+│   │   ├── json_mode.go
+│   │   ├── parse.go
+│   │   └── parse_test.go
+│   ├── grpc
+│   │   ├── backend.go
+│   │   ├── base
+│   │   │   ├── base.go
+│   │   │   └── singlethread.go
+│   │   ├── client.go
+│   │   ├── embed.go
+│   │   ├── interface.go
+│   │   └── server.go
+│   ├── langchain
+│   │   ├── huggingface.go
+│   │   └── langchain.go
+│   ├── library
+│   │   └── dynaload.go
+│   ├── model
+│   │   ├── filters.go
+│   │   ├── initializers.go
+│   │   ├── loader.go
+│   │   ├── loader_test.go
+│   │   ├── model.go
+│   │   ├── model_suite_test.go
+│   │   ├── options.go
+│   │   ├── process.go
+│   │   ├── template.go
+│   │   ├── template_test.go
+│   │   └── watchdog.go
+│   ├── oci
+│   │   ├── blob.go
+│   │   ├── blob_test.go
+│   │   ├── image.go
+│   │   ├── image_test.go
+│   │   ├── oci_suite_test.go
+│   │   ├── ollama.go
+│   │   └── ollama_test.go
+│   ├── stablediffusion
+│   │   ├── generate.go
+│   │   ├── generate_unsupported.go
+│   │   └── stablediffusion.go
+│   ├── startup
+│   │   ├── model_preload.go
+│   │   ├── model_preload_test.go
+│   │   └── startup_suite_test.go
+│   ├── store
+│   │   └── client.go
+│   ├── templates
+│   │   ├── cache.go
+│   │   ├── cache_test.go
+│   │   └── utils_suite_test.go
+│   ├── tinydream
+│   │   ├── generate.go
+│   │   ├── generate_unsupported.go
+│   │   └── tinydream.go
+│   ├── utils
+│   │   ├── base64.go
+│   │   ├── base64_test.go
+│   │   ├── config.go
+│   │   ├── ffmpeg.go
+│   │   ├── hash.go
+│   │   ├── json.go
+│   │   ├── logging.go
+│   │   ├── path.go
+│   │   ├── strings.go
+│   │   ├── untar.go
+│   │   └── utils_suite_test.go
+│   ├── xsync
+│   │   ├── map.go
+│   │   ├── map_test.go
+│   │   └── sync_suite_test.go
+│   └── xsysinfo
+│       ├── cpu.go
+│       └── gpu.go
+├── prompt-templates
+│   ├── alpaca.tmpl
+│   ├── getting_started.tmpl
+│   ├── ggml-gpt4all-j.tmpl
+│   ├── koala.tmpl
+│   ├── llama2-chat-message.tmpl
+│   ├── vicuna.tmpl
+│   └── wizardlm.tmpl
+├── README.md
+├── renovate.json
+├── scripts
+│   ├── latest_hf.py
+│   ├── model_gallery_info.py
+│   └── prepare-libs.sh
+├── SECURITY.md
+├── swagger
+│   ├── docs.go
+│   ├── swagger.json
+│   └── swagger.yaml
+├── tests
+│   ├── e2e
+│   │   ├── e2e_suite_test.go
+│   │   └── e2e_test.go
+│   ├── e2e-aio
+│   │   ├── e2e_suite_test.go
+│   │   └── e2e_test.go
+│   ├── e2e-fixtures
+│   │   └── gpu.yaml
+│   ├── fixtures
+│   │   └── gallery_simple.yaml
+│   ├── integration
+│   │   ├── integration_suite_test.go
+│   │   └── stores_test.go
+│   └── models_fixtures
+│       ├── completion.tmpl
+│       ├── config.yaml
+│       ├── embeddings.yaml
+│       ├── ggml-gpt4all-j.tmpl
+│       ├── gpt4.yaml
+│       ├── gpt4_2.yaml
+│       ├── grpc.yaml
+│       ├── rwkv.yaml
+│       ├── rwkv_chat.tmpl
+│       ├── rwkv_completion.tmpl
+│       └── whisper.yaml
+└── _devkit

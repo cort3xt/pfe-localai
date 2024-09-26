@@ -1,0 +1,47 @@
+services:
+  pfe-gen-text-service:
+    build:
+      context: .  # Assuming Dockerfile is in the current directory
+      dockerfile: Dockerfile  # Optional if named 'Dockerfile'
+      args:
+        IMAGE_TYPE: core
+        BASE_IMAGE: ubuntu:22.04
+        EXTRA_BACKENDS: "transformers,sentencetransformers"
+        BUILD_TYPE: cublas
+        CUDA_MAJOR_VERSION: 12
+        CUDA_MINOR_VERSION: 0
+        TARGETARCH: amd64  # Change as per your architecture (e.g., arm64)
+        FFMPEG: "true"
+        GRPC_BACKENDS: ""
+        GO_TAGS: "transformers,sentencetransformers"
+        MAKEFLAGS: "-j4 -Otarget"
+        LD_FLAGS: "-s -w"
+        # BUILDKIT_INLINE_CACHE: 1  # Enable inline caching
+    image: pfe-gen-text-service:cuda-12  # Tagging the image
+    ports:
+      - "8080:8080"  # Mapping container port 8080 to host port 8080
+    env_file:
+      - .env  # Ensure you have a .env file in the project root
+    environment:
+      DOCKER_BUILDKIT: 1  # Enable BuildKit
+      REBUILD: "true"
+      MODELS_PATH: "/models"
+      DEBUG: "true"
+      BUILD_TYPE: "cublas"
+      LOCALAI_BACKEND_ASSETS_PATH: "/tmp/localai/backend_data/backend-assets/grpc/llama-cpp-avx2"
+      GO_TAGS: "transformers,sentencetransformers"
+    volumes:
+      - ./models:/models:cached  # Bind mount for models directory
+      - localai-models:/build/models  # Named volume for persistence
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    command: >
+      curl -o /tmp/config.yaml https://gist.githubusercontent.com/cort3xt/bad4a4e767122cc2279656ccd9be20d9/raw/2ee721208fc8508f9e4cfea4f85d914f7ce9007a/calme-2.1-phi3.5-4b-i1.yaml &&
+      /build/entrypoint.sh
+
+volumes:
+  localai-models:  # Persistent volume for models
